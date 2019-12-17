@@ -118,7 +118,7 @@ export default {
 
 <style scoped lang='less'>
 .box-card{
-  height: calc(100vh - 150px);
+  height: calc(100vh - 140px);
   .data-show-title{
     text-align: center;
     font-size: 24px;
