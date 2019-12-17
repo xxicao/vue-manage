@@ -9,6 +9,7 @@ import * as Echarts from 'echarts'
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.prototype.$echarts = Echarts
+Vue.prototype.$store = store
 
 new Vue({
   router,

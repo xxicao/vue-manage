@@ -18,7 +18,6 @@ const TableGeneral = () => import(/* webpackChunkName: "table" */ '../pages/tabl
 const TableFilter = () => import(/* webpackChunkName: "table" */ '../pages/table-filter.vue')
 const TableFixed = () => import(/* webpackChunkName: "table" */ '../pages/table-fixed.vue')
 const EchartsSingle = () => import(/* webpackChunkName: "echarts" */ '../pages/echarts-single.vue')
-const EchartsMap = () => import(/* webpackChunkName: "echarts" */ '../pages/echarts-map.vue')
 const DetailShow = () => import(/* webpackChunkName: "detail" */ '../pages/detail-show.vue')
 const CmsSetting = () => import(/* webpackChunkName: "cms" */ '../pages/cms-setting.vue')
 const GeneralC = () => import(/* webpackChunkName: "component" */ '../pages/general-component.vue')
@@ -96,13 +95,6 @@ const routes = [{
       link: '/echartsSingle'
     }
   }, {
-    path: '/echartsMap',
-    component: EchartsMap,
-    meta: {
-      title: '地图图表',
-      link: '/echartsMap'
-    }
-  }, {
     path: '/categoryManage',
     component: CategoryManage,
     meta: {
@@ -145,5 +137,12 @@ const router = new VueRouter({
   mode: 'history',
   routes
 })
-
+router.beforeEach((to, from, next) => {
+  const isLogin = localStorage.getItem('userInfo')
+  if (to.path !== '/login' && !isLogin) {
+    next({ path: '/login' })
+  } else {
+    next()
+  }
+})
 export default router

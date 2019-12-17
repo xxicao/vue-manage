@@ -37,11 +37,10 @@
       <el-submenu index="/echarts">
         <template slot="title">
           <i class="el-icon-data-line"></i>
-          <span>数据可视化</span>
+          <span>图表示例</span>
         </template>
         <el-menu-item-group>
           <el-menu-item index="/echartsSingle">简单图表</el-menu-item>
-          <el-menu-item index="/echartsMap">地图图表</el-menu-item>
         </el-menu-item-group>
       </el-submenu>
       <el-menu-item index="/categoryManage">

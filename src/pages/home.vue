@@ -6,7 +6,7 @@
       </div>
       <el-dropdown>
         <span class="el-dropdown-link">
-          用户名
+          {{userName}}
           <i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
@@ -37,11 +37,13 @@
 
 <script>
 import SlideNav from '../components/slide-nav'
+import { mapState } from 'vuex'
 export default {
   components: {
     SlideNav
   },
   computed: {
+    ...mapState(['userName']),
     pageData () {
       const data = this.$route.matched.map(item => {
         return {
@@ -54,6 +56,7 @@ export default {
   },
   methods: {
     reLogin () {
+      localStorage.removeItem('userInfo')
       this.$router.push({ path: '/login' })
     },
     resetPass () {
