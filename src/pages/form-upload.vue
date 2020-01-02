@@ -13,27 +13,36 @@
         list-type="picture"
       >
         <el-button size="small" type="primary">点击上传</el-button>
-        <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+        <div slot="tip" class="el-upload__tip">
+          只能上传jpg/png文件，且不超过500kb
+        </div>
       </el-upload>
     </div>
     <div style="width:400px;margin-top:50px">
       <el-upload action="#" list-type="picture-card" :auto-upload="false">
-        <i slot="default" class="el-icon-plus"></i>
-        <div slot="file" slot-scope="{file}">
+        <i slot="default" class="el-icon-plus" />
+        <div slot="file" slot-scope="{ file }">
           <img class="el-upload-list__item-thumbnail" :src="file.url" alt />
           <span class="el-upload-list__item-actions">
-            <span class="el-upload-list__item-preview" @click="handlePictureCardPreview(file)">
-              <i class="el-icon-zoom-in"></i>
+            <span
+              class="el-upload-list__item-preview"
+              @click="handlePictureCardPreview(file)"
+            >
+              <i class="el-icon-zoom-in" />
             </span>
             <span
               v-if="!disabled"
               class="el-upload-list__item-delete"
               @click="handleDownload(file)"
             >
-              <i class="el-icon-download"></i>
+              <i class="el-icon-download" />
             </span>
-            <span v-if="!disabled" class="el-upload-list__item-delete" @click="handleRemove(file)">
-              <i class="el-icon-delete"></i>
+            <span
+              v-if="!disabled"
+              class="el-upload-list__item-delete"
+              @click="handleRemove(file)"
+            >
+              <i class="el-icon-delete" />
             </span>
           </span>
         </div>
@@ -63,25 +72,24 @@ export default {
       dialogImageUrl: '',
       dialogVisible: false,
       disabled: false
-    }
+    };
   },
   methods: {
     handleRemove (file, fileList) {
-      console.log(file, fileList)
+      console.log(file, fileList);
     },
     handlePreview (file) {
-      console.log(file)
+      console.log(file);
     },
     handlePictureCardPreview (file) {
-      this.dialogImageUrl = file.url
-      this.dialogVisible = true
+      this.dialogImageUrl = file.url;
+      this.dialogVisible = true;
     },
     handleDownload (file) {
-      console.log(file)
+      console.log(file);
     }
   }
-}
+};
 </script>
 
-<style scoped >
-</style>
+<style scoped></style>

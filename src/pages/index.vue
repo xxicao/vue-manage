@@ -1,12 +1,12 @@
 <template>
   <el-card class="box-card">
-    <p class='data-show-title'>数据统计</p>
+    <p class="data-show-title">数据统计</p>
     <div ref="china" class="china-box"></div>
   </el-card>
 </template>
 
 <script>
-import 'echarts/map/js/china'
+import 'echarts/map/js/china';
 export default {
   data () {
     return {
@@ -47,16 +47,18 @@ export default {
         { name: '香港', value: this.randomValue() },
         { name: '澳门', value: this.randomValue() }
       ]
-    }
+    };
   },
   mounted () {
-    let myChart = this.$echarts.init(this.$refs.china)
-    let that = this
+    let myChart = this.$echarts.init(this.$refs.china);
+    let that = this;
     myChart.setOption({
       tooltip: {
         formatter: function (params, ticket, callback) {
-          return params.seriesName + '<br />' + params.name + '：' + params.value
-        }// 数据格式化
+          return (
+            params.seriesName + '<br />' + params.name + '：' + params.value
+          );
+        } // 数据格式化
       },
       visualMap: {
         min: 0,
@@ -65,9 +67,9 @@ export default {
         top: 'bottom',
         text: ['高', '低'], // 取值范围的文字
         inRange: {
-          color: ['#e0ffff', '#006edd']// 取值范围的颜色
+          color: ['#e0ffff', '#006edd'] // 取值范围的颜色
         },
-        show: true// 图注
+        show: true // 图注
       },
       geo: {
         map: 'china',
@@ -102,24 +104,24 @@ export default {
           data: this.dataList
         }
       ]
-    })
+    });
     myChart.on('click', function (params) {
-      that.$message(`省份：${params.name}，信息量：${params.value}`)
-      console.log(params)
-    })
+      that.$message(`省份：${params.name}，信息量：${params.value}`);
+      console.log(params);
+    });
   },
   methods: {
     randomValue () {
-      return Math.round(Math.random() * 1000)
+      return Math.round(Math.random() * 1000);
     }
   }
-}
+};
 </script>
 
-<style scoped lang='less'>
-.box-card{
+<style scoped lang="less">
+.box-card {
   height: calc(100vh - 140px);
-  .data-show-title{
+  .data-show-title {
     text-align: center;
     font-size: 24px;
     font-weight: 500;
