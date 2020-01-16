@@ -11,10 +11,10 @@
           style="margin-top:20px;width:90%"
         >
           <el-form-item label="登录名" prop="userName">
-            <el-input v-model="form.userName" placeholder="admin"></el-input>
+            <el-input v-model="form.userName" placeholder="yic"></el-input>
           </el-form-item>
           <el-form-item label="密码" prop="pass">
-            <el-input show-password v-model="form.pass" placeholder="123456"></el-input>
+            <el-input show-password v-model="form.pass" placeholder="12345"></el-input>
           </el-form-item>
         </el-form>
         <div style="text-align:center;">
@@ -45,13 +45,23 @@ export default {
   },
   methods: {
     onSubmit (formName) {
-      this.$refs[formName].validate(valid => {
-        if (valid) {
-          localStorage.setItem('userInfo', JSON.stringify(this.form))
-          this.$store.commit('setUserInfo', this.form)
-          this.$router.push('/index')
+      this.$http.post('/user/doLogin', {
+        user_name: this.form.userName,
+        user_password: this.form.pass
+      }).then(res => {
+        if (res && res.Result === 'OK') {
+          this.$message.success('登录成功');
+          this.$refs[formName].validate(valid => {
+            if (valid) {
+              localStorage.setItem('userInfo', JSON.stringify(this.form))
+              this.$store.commit('setUserInfo', this.form)
+              this.$router.push('/index')
+            } else {
+              return false
+            }
+          })
         } else {
-          return false
+          this.$message.error(res.err_msg);
         }
       })
     }
